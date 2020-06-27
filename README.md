@@ -21,6 +21,10 @@ title: Beginning Python Course
 [Launch Interactive Jupyter Notebooks on myBinder](https://mybinder.org/v2/gh/makzan/Beginning-Python-Course/master)
 
 
+## Source
+
+The book source is hosted on [Github/makzan](https://github.com/makzan/Beginning-Python-Course/).
+
 ## License
 
 This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
