@@ -16,4 +16,6 @@ title: Beginning Python Course
 - [Lesson 10](/lesson-10-bringing-python-to-life/)
 
 
-https://mybinder.org/v2/gh/makzan/Beginning-Python-Course/master
+[Preview Jupyter notebooks on nbviewer](https://nbviewer.jupyter.org/github/makzan/Beginning-Python-Course/tree/master/)
+
+[Launch Interactive Jupyter Notebooks on myBinder](https://mybinder.org/v2/gh/makzan/Beginning-Python-Course/master)
