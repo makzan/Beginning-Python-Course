@@ -15,4 +15,5 @@ title: Beginning Python Course
 - [Lesson 9](/lesson-9-plotting-graph-with-matplotlib/)
 - [Lesson 10](/lesson-10-bringing-python-to-life/)
 
-https://gesis.mybinder.org/binder/v2/gh/makzan/Beginning-Python-Course/0fe25edbde1e13207a61d49869306939fee98d82
+
+https://mybinder.org/v2/gh/makzan/Beginning-Python-Course/master
