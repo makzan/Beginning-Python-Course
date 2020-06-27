@@ -1,5 +1,5 @@
 ---
 layout: layout
+title: Beginning Python Course
 ---
 
-# Beginning Python Course
