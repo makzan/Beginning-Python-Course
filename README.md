@@ -19,3 +19,8 @@ title: Beginning Python Course
 [Preview Jupyter notebooks on nbviewer](https://nbviewer.jupyter.org/github/makzan/Beginning-Python-Course/tree/master/)
 
 [Launch Interactive Jupyter Notebooks on myBinder](https://mybinder.org/v2/gh/makzan/Beginning-Python-Course/master)
+
+
+## License
+
+This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
