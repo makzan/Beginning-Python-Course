@@ -1,0 +1,14 @@
+2020-06-07: Hello World
+2020-06-07: Hello again
+2020-06-07: Hi Hi
+2020-06-07: Yeah
+2020-06-07: Hello DOCX
+2020-06-07: Hello docx
+2020-06-07: Hi again in docx. Each input here is a paragraph in the docx file.
+2020-06-10: Hello
+2020-06-10: Hello
+2020-06-10: Hello
+2020-06-10: Hello
+2020-06-11: Hello
+2020-06-11: Hello
+2020-08-10: Hello python.

@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>Lecture 3B Reading and Writing Text File</title>
+<title>Lesson 3A for and while</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13017,45 +13017,6 @@ ul.typeahead-list  > li > a.pull-right {
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
-<style type="text/css">
-    
-/* Temporary definitions which will become obsolete with Notebook release 5.0 */
-.ansi-black-fg { color: #3E424D; }
-.ansi-black-bg { background-color: #3E424D; }
-.ansi-black-intense-fg { color: #282C36; }
-.ansi-black-intense-bg { background-color: #282C36; }
-.ansi-red-fg { color: #E75C58; }
-.ansi-red-bg { background-color: #E75C58; }
-.ansi-red-intense-fg { color: #B22B31; }
-.ansi-red-intense-bg { background-color: #B22B31; }
-.ansi-green-fg { color: #00A250; }
-.ansi-green-bg { background-color: #00A250; }
-.ansi-green-intense-fg { color: #007427; }
-.ansi-green-intense-bg { background-color: #007427; }
-.ansi-yellow-fg { color: #DDB62B; }
-.ansi-yellow-bg { background-color: #DDB62B; }
-.ansi-yellow-intense-fg { color: #B27D12; }
-.ansi-yellow-intense-bg { background-color: #B27D12; }
-.ansi-blue-fg { color: #208FFB; }
-.ansi-blue-bg { background-color: #208FFB; }
-.ansi-blue-intense-fg { color: #0065CA; }
-.ansi-blue-intense-bg { background-color: #0065CA; }
-.ansi-magenta-fg { color: #D160C4; }
-.ansi-magenta-bg { background-color: #D160C4; }
-.ansi-magenta-intense-fg { color: #A03196; }
-.ansi-magenta-intense-bg { background-color: #A03196; }
-.ansi-cyan-fg { color: #60C6C8; }
-.ansi-cyan-bg { background-color: #60C6C8; }
-.ansi-cyan-intense-fg { color: #258F8F; }
-.ansi-cyan-intense-bg { background-color: #258F8F; }
-.ansi-white-fg { color: #C5C1B4; }
-.ansi-white-bg { background-color: #C5C1B4; }
-.ansi-white-intense-fg { color: #A1A6B2; }
-.ansi-white-intense-bg { background-color: #A1A6B2; }
-
-.ansi-bold { font-weight: bold; }
-
-    </style>
 
 
 <style type="text/css">
@@ -13116,26 +13077,29 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Lecture-3&#8212;File-Reading-and-Writing">Lecture 3&#8212;File Reading and Writing<a class="anchor-link" href="#Lecture-3&#8212;File-Reading-and-Writing">&#182;</a></h1>
+<h1 id="Lecture-3A&#8212;For-and-While-iteration">Lecture 3A&#8212;For and While iteration<a class="anchor-link" href="#Lecture-3A&#8212;For-and-While-iteration">&#182;</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In this lecture, we will explore reading and writing plain text files.</p>
-<p>We will learn:</p>
-<ul>
-<li><a href="#Reading-plain-text-file">Read TXT file</a></li>
-<li><a href="#Reading-CSV-file">Read CSV file</a></li>
-<li><a href="#Example-of-writing-plain-text-file:-Diary-logging">Write TXT file</a></li>
-<li><a href="#Writing-DOCX">Write DOCX file</a></li>
-<li><a href="#Reading-DOCX-file">Reading paragraphs in DOCX file</a></li>
-<li><a href="#Reading-tables-in-DOCX-file">Reading table of data in DOCX file</a></li>
-<li><a href="#Optional:-Zipping-multiple-list-into-a-multi-columns-list">Optional: Zipping mutliple columns into nested list</a></li>
-<li><a href="#Optional:-Converting-the-multi-columns-list-into-pandas-DataFrame">Optional: Using pandas DataFrame</a></li>
-<li><a href="#Optional:-Process-Text-with-Regular-Expression">Optional: Process text using regular expression</a></li>
-<li><a href="#Optional:-Combining-DataFrame-and-Regex">Optional: Combining DataFrame and Regex</a></li>
+<p>In this notebook, we learn to control the logic flow. We will use <code>if</code>, <code>while</code>, <code>for</code> to create condition and iteration.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Table-of-Content">Table of Content<a class="anchor-link" href="#Table-of-Content">&#182;</a></h2><ul>
+<li><a href="#for-loop">for-loop</a></li>
+<li><a href="#Exercise:-for-loop">Exercise: for-loop</a></li>
+<li><a href="#List-convertion-with-map">List convertion with map</a></li>
+<li><a href="#Count-how-many-occurances-in-a-list">Count how many occurances in a list</a></li>
+<li><a href="#range(start,-end,-step">Range(start, end, step)</a>)</li>
+<li><a href="#while-loop">while-loop</a></li>
+<li><a href="#Exercise:-while-loop">Exercise: while-loop</a></li>
 </ul>
 
 </div>
@@ -13144,409 +13108,16 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Reading-plain-text-file">Reading plain text file<a class="anchor-link" href="#Reading-plain-text-file">&#182;</a></h2>
+<h2 id="while-loop-vs.-for-loop">while-loop vs. for-loop<a class="anchor-link" href="#while-loop-vs.-for-loop">&#182;</a></h2><p>While-loop is usually used for iteration that we don’t know the total count.</p>
+<p>For-loop is when we know the iteration count. For example, we already have the list of items. Or we already know how many times to repeat.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can use <code>open()</code> to read and write plain text file. There are 3 modes when opening a file:</p>
-<ul>
-<li><code>r</code> for reading.</li>
-<li><code>w</code> for over-writing.</li>
-<li><code>a</code> for appending.</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;quotes.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_obj</span><span class="p">:</span>
-    <span class="n">quotes</span> <span class="o">=</span> <span class="n">file_obj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
-    
-<span class="n">quotes</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[22]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[&#39;I want to put a ding in the universe.—Steve Jobs&#39;,
- &#39;Life is 10% what happens to you and 90% how you react to it.—Charles R. Swindoll&#39;,
- &#34;Family is not an important thing. It&#39;s everything.—Michael J. Fox&#34;,
- &#34;Nothing is impossible, the word itself says &#39;I&#39;m possible&#39;!—Audrey Hepburn&#34;,
- &#39;There are two ways of spreading light: to be the candle or the mirror that reflects it.—Edith Wharton&#39;,
- &#34;Try to be a rainbow in someone&#39;s cloud.—Maya Angelou&#34;,
- &#39;Be brave enough to live life creatively. The creative place where no one else has ever been.—Alan Alda&#39;,
- &#39;The secret of getting ahead is getting started.—Mark Twain&#39;]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
-
-<span class="n">quote</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">quotes</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">quote</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>There are two ways of spreading light: to be the candle or the mirror that reflects it.—Edith Wharton
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Reading-CSV-file">Reading CSV file<a class="anchor-link" href="#Reading-CSV-file">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We can further improve the storage by using CSV file format.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
-
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;quotes.csv&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_obj</span><span class="p">:</span>
-    <span class="n">csv_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">file_obj</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">csv_reader</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[&#39;I want to put a ding in the universe.&#39;, &#39;Steve Jobs&#39;]
-[&#39;Life is 10% what happens to you and 90% how you react to it.&#39;, &#39;Charles R. Swindoll&#39;]
-[&#34;Family is not an important thing. It&#39;s everything.&#34;, &#39;Michael J. Fox&#39;]
-[&#34;Nothing is impossible,the word itself says &#39;I&#39;m possible&#39;!&#34;, &#39;Audrey Hepburn&#39;]
-[&#39;There are two ways of spreading light: to be the candle or the mirror that reflects it.&#39;, &#39;Edith Wharton&#39;]
-[&#34;Try to be a rainbow in someone&#39;s cloud.&#34;, &#39;Maya Angelou&#39;]
-[&#39;Be brave enough to live life creatively. The creative place where no one else has ever been.&#39;, &#39;Alan Alda&#39;]
-[&#39;The secret of getting ahead is getting started.&#39;, &#39;Mark Twain&#39;]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Preview-of-using-Pandas-to-read-CSV-file">Preview of using Pandas to read CSV file<a class="anchor-link" href="#Preview-of-using-Pandas-to-read-CSV-file">&#182;</a></h2><p>When using Pandas, we can read the CSV file into <code>DataFrame</code>.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;quotes.csv&quot;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[4]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>I want to put a ding in the universe.</th>
-      <th>Steve Jobs</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Life is 10% what happens to you and 90% how yo...</td>
-      <td>Charles R. Swindoll</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Family is not an important thing. It's everyth...</td>
-      <td>Michael J. Fox</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Nothing is impossible,the word itself says 'I'...</td>
-      <td>Audrey Hepburn</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>There are two ways of spreading light: to be t...</td>
-      <td>Edith Wharton</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Try to be a rainbow in someone's cloud.</td>
-      <td>Maya Angelou</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Be brave enough to live life creatively. The c...</td>
-      <td>Alan Alda</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>The secret of getting ahead is getting started.</td>
-      <td>Mark Twain</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Example-of-writing-plain-text-file:-Diary-logging">Example of writing plain text file: Diary logging<a class="anchor-link" href="#Example-of-writing-plain-text-file:-Diary-logging">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
-
-<span class="n">content</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;What do you want to say to Mr. Diary? &quot;</span><span class="p">)</span>
-<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">content</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;diary.txt&#39;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_obj</span><span class="p">:</span>
-        <span class="n">today</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
-        <span class="n">file_obj</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">today</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="n">content</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;diary.txt&#39;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_obj</span><span class="p">:</span>
-    <span class="n">lines</span> <span class="o">=</span> <span class="n">file_obj</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">())</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>What do you want to say to Mr. Diary? Hello
-2020-06-10: Hello
-2020-06-10: Hello
-2020-06-11: Hello
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Writing-DOCX">Writing DOCX<a class="anchor-link" href="#Writing-DOCX">&#182;</a></h2><p>We can use <code>python-docx</code> module to write content to DOCX.</p>
-<p>First, we need to install the module by calling <code>pip install python-docx</code> once in terminal or in Jupyter.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">docx</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Requirement already satisfied: python-docx in /private/var/mobile/Containers/Data/Application/8F879E4C-8D79-4BDE-8FB3-2E6B2D2BD6C6/Library/lib/python3.7/site-packages (0.8.10)
-Requirement already satisfied: lxml&gt;=2.3.2 in /private/var/mobile/Containers/Data/Application/8F879E4C-8D79-4BDE-8FB3-2E6B2D2BD6C6/Library/lib/python3.7/site-packages/lxml-4.4.2-py3.7-macosx-10.9-x86_64.egg (from python-docx) (4.4.2)
-Note: you may need to restart the kernel to use updated packages.
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
-<span class="kn">import</span> <span class="nn">docx</span>
-<span class="kn">import</span> <span class="nn">os</span>
-
-<span class="n">content</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;What do you want to say to Mr. Diary? &quot;</span><span class="p">)</span>
-<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">content</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;diary.txt&#39;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_obj</span><span class="p">:</span>
-        <span class="n">today</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
-        <span class="n">file_obj</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">today</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="n">content</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="s2">&quot;diary.docx&quot;</span><span class="p">):</span>
-    <span class="n">doc</span> <span class="o">=</span> <span class="n">docx</span><span class="o">.</span><span class="n">Document</span><span class="p">(</span><span class="s2">&quot;diary.docx&quot;</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">doc</span> <span class="o">=</span> <span class="n">docx</span><span class="o">.</span><span class="n">Document</span><span class="p">()</span>
-<span class="n">doc</span><span class="o">.</span><span class="n">add_paragraph</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
-<span class="n">doc</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;diary.docx&quot;</span><span class="p">)</span>
-    
-<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{content}</span><span class="s2"> is written to diary.docx&quot;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>What do you want to say to Mr. Diary? Hello
-Hello is written to diary.docx
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Reading-DOCX-file">Reading DOCX file<a class="anchor-link" href="#Reading-DOCX-file">&#182;</a></h2><p>Given that we have a DOCX file named <code>Sample Document.docx</code>. We can read all the paragrahs in the DOCX file.</p>
-
+<h2 id="for-loop">for-loop<a class="anchor-link" href="#for-loop">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -13555,23 +13126,10 @@ Hello is written to diary.docx
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">docx</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Apple&#39;</span><span class="p">,</span> <span class="s1">&#39;Banana&#39;</span><span class="p">,</span> <span class="s1">&#39;Orange&#39;</span><span class="p">]</span>
 
-<span class="n">doc</span> <span class="o">=</span> <span class="n">docx</span><span class="o">.</span><span class="n">Document</span><span class="p">(</span><span class="s2">&quot;Sample Document.docx&quot;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">paragraph</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">paragraphs</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">paragraph</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">fruit</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">fruit</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13588,17 +13146,9 @@ Hello is written to diary.docx
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Sample Document
-
-This is a sample paragraph.
-
-This is the second paragraph.
-
-Here is the result
-
-Summary
-
-This is the summary of the sample report document.
+<pre>Apple
+Banana
+Orange
 </pre>
 </div>
 </div>
@@ -13610,14 +13160,62 @@ This is the summary of the sample report document.
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Reading-tables-in-DOCX-file">Reading tables in DOCX file<a class="anchor-link" href="#Reading-tables-in-DOCX-file">&#182;</a></h2>
+<p>Let’s bring back our <code>is_student_pass</code> function we defined. We can use a for loop to get a list of Pass/Fail result.</p>
+
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">is_student_pass</span><span class="p">(</span><span class="n">score</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">60</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Pass&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Fail&quot;</span>
+
+<span class="n">scores</span> <span class="o">=</span> <span class="p">[</span><span class="mi">80</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">51</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">scores</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">is_student_pass</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{score}</span><span class="s2">: </span><span class="si">{result}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>80: Pass
+59: Fail
+62: Pass
+70: Pass
+99: Pass
+40: Fail
+51: Fail
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can also read the tables and the content.</p>
+<h2 id="Exercise:-for-loop">Exercise: for-loop<a class="anchor-link" href="#Exercise:-for-loop">&#182;</a></h2><p>In this exercise, we bring back the book lists and loop books to print each details.</p>
 
 </div>
 </div>
@@ -13627,30 +13225,14 @@ This is the summary of the sample report document.
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">doc</span><span class="o">.</span><span class="n">tables</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">books</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Python Tricks&#39;</span><span class="p">,</span> <span class="s1">&#39;category&#39;</span><span class="p">:</span> <span class="s1">&#39;Programming&#39;</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mi">240</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Python Crash Course&#39;</span><span class="p">,</span> <span class="s1">&#39;category&#39;</span><span class="p">:</span> <span class="s1">&#39;Programming&#39;</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Getting Real&#39;</span><span class="p">,</span> <span class="s1">&#39;category&#39;</span><span class="p">:</span> <span class="s1">&#39;Startup&#39;</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">}</span>
+<span class="p">]</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[10]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[&lt;docx.table.Table at 0x1385d0f60&gt;]</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -13658,7 +13240,7 @@ This is the summary of the sample report document.
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The following code read the data row by row into 3 lists: <code>dates</code>, <code>morning_visitors</code>, <code>evening_visitors</code>.</p>
+<p>Try to loop the books and print the title and their price. We don’t need to print the category in this exercise.</p>
 
 </div>
 </div>
@@ -13668,18 +13250,11 @@ This is the summary of the sample report document.
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">table</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="n">dates</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">morning_visitors</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">evening_visitors</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">table</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
-    <span class="n">dates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-    <span class="n">morning_visitors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
-    <span class="n">evening_visitors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
-
-<span class="n">dates</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">book</span> <span class="ow">in</span> <span class="n">books</span><span class="p">:</span>
+    <span class="c1"># Your code here</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">price</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="nb">print</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13692,153 +13267,15 @@ This is the summary of the sample report document.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[11]:</div>
+    <div class="prompt"></div>
 
 
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[&#39;2020-06-01&#39;,
- &#39;2020-06-02&#39;,
- &#39;2020-06-03&#39;,
- &#39;2020-06-04&#39;,
- &#39;2020-06-05&#39;,
- &#39;2020-06-06&#39;,
- &#39;2020-06-07&#39;]</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>None
+None
+None
+</pre>
 </div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">morning_visitors</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[12]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[23, 25, 24, 26, 25, 24, 23]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">morning_visitors</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[13]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>170</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">evening_visitors</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[14]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[17, 16, 16, 15, 16, 17, 18]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">morning_visitors</span><span class="p">)</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">evening_visitors</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[15]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>285</pre>
-</div>
-
 </div>
 
 </div>
@@ -13848,756 +13285,23 @@ This is the summary of the sample report document.
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Optional:-Zipping-multiple-list-into-a-multi-columns-list">Optional: Zipping multiple-list into a multi-columns list<a class="anchor-link" href="#Optional:-Zipping-multiple-list-into-a-multi-columns-list">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The following section about zipping and data frame is a preview of data processing. We will go through detail usage of pandas and data frame in lecture 8.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Have 3 separated lists for the same purpose of data makes it hard to maintain. Usually we want to have a tabular data to hold all related data into rows and columns.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">zipped_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">morning_visitors</span><span class="p">,</span> <span class="n">evening_visitors</span><span class="p">))</span>
-
-<span class="n">zipped_list</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[16]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[(&#39;2020-06-01&#39;, 23, 17),
- (&#39;2020-06-02&#39;, 25, 16),
- (&#39;2020-06-03&#39;, 24, 16),
- (&#39;2020-06-04&#39;, 26, 15),
- (&#39;2020-06-05&#39;, 25, 16),
- (&#39;2020-06-06&#39;, 24, 17),
- (&#39;2020-06-07&#39;, 23, 18)]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">zipped_list</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[17]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(&#39;2020-06-04&#39;, 26, 15)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Optional:-Converting-the-multi-columns-list-into-pandas-DataFrame">Optional: Converting the multi-columns list into pandas DataFrame<a class="anchor-link" href="#Optional:-Converting-the-multi-columns-list-into-pandas-DataFrame">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We will learn pandas and DataFrame in lecture 8. But let’s have a glimpse on how we can process multi-columns of data in handy way by using it.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">zipped_list</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="s1">&#39;Morning Visitors&#39;</span><span class="p">,</span> <span class="s1">&#39;Evening Visitors&#39;</span><span class="p">])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[19]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Date</th>
-      <th>Morning Visitors</th>
-      <th>Evening Visitors</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2020-06-01</td>
-      <td>23</td>
-      <td>17</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2020-06-02</td>
-      <td>25</td>
-      <td>16</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2020-06-03</td>
-      <td>24</td>
-      <td>16</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2020-06-04</td>
-      <td>26</td>
-      <td>15</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2020-06-05</td>
-      <td>25</td>
-      <td>16</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2020-06-06</td>
-      <td>24</td>
-      <td>17</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>2020-06-07</td>
-      <td>23</td>
-      <td>18</td>
-    </tr>
-  </tbody>
+<table>
+<thead><tr>
+<th>Expected result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python Tricks: \$240</td>
+</tr>
+<tr>
+<td>Python Crash Course: \$200</td>
+</tr>
+<tr>
+<td>Getting Real: \$200</td>
+</tr>
+</tbody>
 </table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>What’re the Benefits of using data frame? We can perform column-based calcuations to all data at once.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Total&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Morning Visitors&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Evening Visitors&#39;</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[21]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Date</th>
-      <th>Morning Visitors</th>
-      <th>Evening Visitors</th>
-      <th>Total</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2020-06-01</td>
-      <td>23</td>
-      <td>17</td>
-      <td>40</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2020-06-02</td>
-      <td>25</td>
-      <td>16</td>
-      <td>41</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2020-06-03</td>
-      <td>24</td>
-      <td>16</td>
-      <td>40</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2020-06-04</td>
-      <td>26</td>
-      <td>15</td>
-      <td>41</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2020-06-05</td>
-      <td>25</td>
-      <td>16</td>
-      <td>41</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2020-06-06</td>
-      <td>24</td>
-      <td>17</td>
-      <td>41</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>2020-06-07</td>
-      <td>23</td>
-      <td>18</td>
-      <td>41</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Optional:-Process-Text-with-Regular-Expression">Optional: Process Text with Regular Expression<a class="anchor-link" href="#Optional:-Process-Text-with-Regular-Expression">&#182;</a></h2><p>We can use Regular Expression to process text with patterns.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;sample-years.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file_obj</span><span class="p">:</span>
-    <span class="n">lines</span> <span class="o">=</span> <span class="n">file_obj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
-    
-<span class="n">lines</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[13]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[&#39;Steven Hawking was born in 1942.&#39;,
- &#39;Albert Einstein was born in 1879&#39;,
- &#39;Albert Einstein won Nobel Prize in 1921.&#39;,
- &#39;Stephen Curry wear No. 30.&#39;,
- &#39;Stephen Curry went into NBA in 2009&#39;,
- &#39;Stephen Curry won NBA MVP in 2015 and 2016.&#39;,
- &#39;Micheal Jordan was born in 1963.&#39;]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The following code finds all the years in the text document.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
-
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
-    <span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;\d</span><span class="si">{4}</span><span class="s1">&#39;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">line</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[&#39;1942&#39;]
-[&#39;1879&#39;]
-[&#39;1921&#39;]
-[]
-[&#39;2009&#39;]
-[&#39;2015&#39;, &#39;2016&#39;]
-[&#39;1963&#39;]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>What if we only want the first year found?</p>
-<p>Let’s try using <code>[0]</code> to get the first result for each line. And then, we have an error:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
-
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
-    <span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;\d</span><span class="si">{4}</span><span class="s1">&#39;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">line</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>1942
-1879
-1921
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">IndexError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-18-f0bcda632400&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-green-fg">for</span> line <span class="ansi-green-fg">in</span> lines<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span>     pattern <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">&#39;\d{4}&#39;</span>
-<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg">     </span>print<span class="ansi-blue-fg">(</span>re<span class="ansi-blue-fg">.</span>findall<span class="ansi-blue-fg">(</span>pattern<span class="ansi-blue-fg">,</span> line<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-red-fg">IndexError</span>: list index out of range</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The error occurs because there is one line that failed to find any year result.</p>
-<p>We can ensure there is empty result by searching the ending of line too. This result in an extra result in every reuslt:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
-
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
-    <span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;\d</span><span class="si">{4}</span><span class="s1">|$&#39;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">line</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[&#39;1942&#39;, &#39;&#39;]
-[&#39;1879&#39;, &#39;&#39;]
-[&#39;1921&#39;, &#39;&#39;]
-[&#39;&#39;]
-[&#39;2009&#39;, &#39;&#39;]
-[&#39;2015&#39;, &#39;2016&#39;, &#39;&#39;]
-[&#39;1963&#39;, &#39;&#39;]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>But it is useful if we need to ensure the first result.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
-
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
-    <span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;\d</span><span class="si">{4}</span><span class="s1">|$&#39;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">line</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>1942
-1879
-1921
-
-2009
-2015
-1963
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The following code finds all the names in the text document</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
-
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
-    <span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;[A-Z][a-z]* [A-Z][a-z]*&#39;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">line</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[&#39;Steven Hawking&#39;]
-[&#39;Albert Einstein&#39;]
-[&#39;Albert Einstein&#39;, &#39;Nobel Prize&#39;]
-[&#39;Stephen Curry&#39;]
-[&#39;Stephen Curry&#39;]
-[&#39;Stephen Curry&#39;, &#39;A M&#39;]
-[&#39;Micheal Jordan&#39;]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
-
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
-    <span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;[A-Z][a-z]+ [A-Z][a-z]+&#39;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">line</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[&#39;Steven Hawking&#39;]
-[&#39;Albert Einstein&#39;]
-[&#39;Albert Einstein&#39;, &#39;Nobel Prize&#39;]
-[&#39;Stephen Curry&#39;]
-[&#39;Stephen Curry&#39;]
-[&#39;Stephen Curry&#39;]
-[&#39;Micheal Jordan&#39;]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
-
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
-    <span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;^[A-Z][a-z]+ [A-Z][a-z]+&#39;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">line</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[&#39;Steven Hawking&#39;]
-[&#39;Albert Einstein&#39;]
-[&#39;Albert Einstein&#39;]
-[&#39;Stephen Curry&#39;]
-[&#39;Stephen Curry&#39;]
-[&#39;Stephen Curry&#39;]
-[&#39;Micheal Jordan&#39;]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>You can read more examples of <a href="https://www.programiz.com/python-programming/regex">using Regular Expression on Programiz.com</a>.</p>
 
 </div>
 </div>
@@ -14605,138 +13309,27 @@ This is the summary of the sample report document.
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Optional:-Combining-DataFrame-and-Regex">Optional: Combining DataFrame and Regex<a class="anchor-link" href="#Optional:-Combining-DataFrame-and-Regex">&#182;</a></h2><p>We can combine data frame and regular expression to perform column-based operation to all data at once.</p>
-
+<h2 id="List-convertion-with-map">List convertion with map<a class="anchor-link" href="#List-convertion-with-map">&#182;</a></h2>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;sample-years.txt&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Original Text&#39;</span><span class="p">])</span>
-
-<span class="n">df</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[3]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Original Text</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Steven Hawking was born in 1942.</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Albert Einstein was born in 1879</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Albert Einstein won Nobel Prize in 1921.</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Stephen Curry wear No. 30.</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Stephen Curry went into NBA in 2009</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Stephen Curry won NBA MVP in 2015 and 2016.</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Micheal Jordan was born in 1963.</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now that we loaded the text into a column, we can create a new column that applies our own transformation.</p>
-<p>We define the function that find first year and name given the string parameter input.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">find_first_year</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
-    <span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;\d</span><span class="si">{4}</span><span class="s1">|$&#39;</span>
-    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="k">def</span> <span class="nf">find_first_name</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
-    <span class="n">pattern</span> <span class="o">=</span> <span class="s1">&#39;^[A-Z][a-z]+ [A-Z][a-z]+|$&#39;</span>
-    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">string</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">is_student_pass</span><span class="p">(</span><span class="n">score</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">60</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Pass&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Fail&quot;</span>
 
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Years&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Original Text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">find_first_year</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Original Text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">find_first_name</span><span class="p">)</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="p">[</span><span class="mi">80</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">51</span><span class="p">]</span>
 
-<span class="n">df</span>
+<span class="n">result_map</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">is_student_pass</span><span class="p">,</span> <span class="n">scores</span><span class="p">)</span>
+<span class="n">result_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">result_map</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">result_list</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14749,94 +13342,32 @@ This is the summary of the sample report document.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt"></div>
 
 
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Original Text</th>
-      <th>Years</th>
-      <th>Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Steven Hawking was born in 1942.</td>
-      <td>1942</td>
-      <td>Steven Hawking</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Albert Einstein was born in 1879</td>
-      <td>1879</td>
-      <td>Albert Einstein</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Albert Einstein won Nobel Prize in 1921.</td>
-      <td>1921</td>
-      <td>Albert Einstein</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Stephen Curry wear No. 30.</td>
-      <td></td>
-      <td>Stephen Curry</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Stephen Curry went into NBA in 2009</td>
-      <td>2009</td>
-      <td>Stephen Curry</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Stephen Curry won NBA MVP in 2015 and 2016.</td>
-      <td>2015</td>
-      <td>Stephen Curry</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Micheal Jordan was born in 1963.</td>
-      <td>1963</td>
-      <td>Micheal Jordan</td>
-    </tr>
-  </tbody>
-</table>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[&#39;Pass&#39;, &#39;Fail&#39;, &#39;Pass&#39;, &#39;Pass&#39;, &#39;Pass&#39;, &#39;Fail&#39;, &#39;Fail&#39;]
+</pre>
 </div>
-</div>
-
 </div>
 
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Count-how-many-occurances-in-a-list">Count how many occurances in a list<a class="anchor-link" href="#Count-how-many-occurances-in-a-list">&#182;</a></h2>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;Years&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">result_list</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;Pass&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14853,76 +13384,9 @@ This is the summary of the sample report document.
 
 
 
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Original Text</th>
-      <th>Years</th>
-      <th>Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>3</th>
-      <td>Stephen Curry wear No. 30.</td>
-      <td></td>
-      <td>Stephen Curry</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Albert Einstein was born in 1879</td>
-      <td>1879</td>
-      <td>Albert Einstein</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Albert Einstein won Nobel Prize in 1921.</td>
-      <td>1921</td>
-      <td>Albert Einstein</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>Steven Hawking was born in 1942.</td>
-      <td>1942</td>
-      <td>Steven Hawking</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Micheal Jordan was born in 1963.</td>
-      <td>1963</td>
-      <td>Micheal Jordan</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Stephen Curry went into NBA in 2009</td>
-      <td>2009</td>
-      <td>Stephen Curry</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Stephen Curry won NBA MVP in 2015 and 2016.</td>
-      <td>2015</td>
-      <td>Stephen Curry</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>4</pre>
 </div>
 
 </div>
@@ -14936,7 +13400,7 @@ This is the summary of the sample report document.
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;Name&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">result_list</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;Fail&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14953,76 +13417,9 @@ This is the summary of the sample report document.
 
 
 
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Original Text</th>
-      <th>Years</th>
-      <th>Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>Albert Einstein was born in 1879</td>
-      <td>1879</td>
-      <td>Albert Einstein</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Albert Einstein won Nobel Prize in 1921.</td>
-      <td>1921</td>
-      <td>Albert Einstein</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Micheal Jordan was born in 1963.</td>
-      <td>1963</td>
-      <td>Micheal Jordan</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Stephen Curry wear No. 30.</td>
-      <td></td>
-      <td>Stephen Curry</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Stephen Curry went into NBA in 2009</td>
-      <td>2009</td>
-      <td>Stephen Curry</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Stephen Curry won NBA MVP in 2015 and 2016.</td>
-      <td>2015</td>
-      <td>Stephen Curry</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>Steven Hawking was born in 1942.</td>
-      <td>1942</td>
-      <td>Steven Hawking</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>3</pre>
 </div>
 
 </div>
@@ -15034,7 +13431,224 @@ This is the summary of the sample report document.
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>More on <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sort_values.html">sort_values</a> on pandas documentation.</p>
+<h2 id="range(start,-end,-step)">range(start, end, step)<a class="anchor-link" href="#range(start,-end,-step)">&#182;</a></h2><p>Sometimes, we don’t have the list to iterate. But we know how many steps we want to loop. In this case, we can use <code>range</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># print(&quot;0-9&quot;)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># print(&quot;1-10&quot;)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># print(&quot;1,3,5,7,9&quot;)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1
+3
+5
+7
+9
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># print(&quot;2,4,6,8,10&quot;)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>2
+4
+6
+8
+10
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Code-example:-while-loop">Code example: while-loop<a class="anchor-link" href="#Code-example:-while-loop">&#182;</a></h2><p>By combining list and while loop, we can keep appending the value to the <code>tasks</code> list until the input is "q". The <code>break</code> command exits the while-loop.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tasks</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please input a to-do task, or &#39;q&#39; to quit. &quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span>
+        <span class="k">break</span>
+        
+    <span class="n">tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Please input a to-do task, or &#39;q&#39; to quit. q
+[]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can tell from the indentation that line 4—9 under the <code>while True:</code> loop. Line 7 is under the <code>if value=='q':</code> loop.</p>
+<p>Keep in mind that we need to be careful when using <code>while True:</code>. the condition is always true so the loop will run forever until we meet the <code>break</code> command. If the logic we designed has flaw, the loop may never end.</p>
 
 </div>
 </div>
@@ -15042,19 +13656,79 @@ This is the summary of the sample report document.
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h2><p>In this section, we learned to read and write plain text file. We also read and write DOCX file. Then, we process the tablular data read from the DOCX file into nested list and even pandas DataFrame.</p>
+<h2 id="Exercise:-while-loop">Exercise: while-loop<a class="anchor-link" href="#Exercise:-while-loop">&#182;</a></h2><p>In this exercise, we would like to create a guest list by modifying <code>while</code> loop example given above.</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">guests</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Your code here</span>
+<span class="k">while</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Your text here &quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span>
+        <span class="k">break</span>
+    
+    <span class="kc">None</span> <span class="c1"># append the value to guests</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="n">guests</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Furthermore, you may read more examples about <a href="http://automatetheboringstuff.com/2e/chapter13/">reading excel document</a> on AutomateTheBoringStuff.com. And examples about <a href="http://automatetheboringstuff.com/2e/chapter15/">reading PDF/DOCX document</a>.</p>
-<p>We will also use pandas to read Excel data into DataFrame in Lecture 8.</p>
+<h2 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h2><p>In this lesson, we learned the basic logic flow. Specifically:</p>
+<ul>
+<li>if-condition</li>
+<li>loop with or without known iteration count</li>
+<li>while-loop</li>
+<li>for-loop</li>
+<li>range</li>
+</ul>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
     </div>
   </div>
